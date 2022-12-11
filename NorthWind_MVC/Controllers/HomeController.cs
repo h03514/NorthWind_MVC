@@ -47,6 +47,29 @@ namespace NorthWind_MVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Insert(HomeViewModel home )
+        {
+            string xUserName = home.xUserName;
+            string xPhone = home.xPhone;
+
+            string str = "insert into xAccount(xUserName, xPhone) values('" + xUserName + "', '" + xPhone + "')";
+
+            using (SqlConnection connection = new SqlConnection(conStr))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(str, connection))
+                {
+                    command.Parameters.AddWithValue("@xUserName", home.xUserName);
+                    command.Parameters.AddWithValue("@xPhone", home.xPhone);
+                    command.ExecuteNonQuery();
+                    
+                }
+            }
+
+            return View(home);
+            
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

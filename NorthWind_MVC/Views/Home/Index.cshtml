@@ -49,8 +49,16 @@
                         @*<td class="col-lg-3"><button class="btn btn-warning"><i class="fas fa-plus-circle"></i>加入購物車</button></td>*@
                     </tr>
                 }
-
+                
             </tbody>
         </table>
+        <div>
+            @using (Html.BeginForm("Insert", "Home", FormMethod.Post))
+            {
+                <label>姓名:</label><input type="text" name="xUserName" /><br />
+                <label>電話:</label><input type="text" name="xPhone" /><br />
+                <input type="submit" value="查詢" />
+            }
+        </div>
     </div>
 </div>
