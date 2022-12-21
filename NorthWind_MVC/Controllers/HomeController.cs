@@ -1,10 +1,12 @@
-﻿using NorthWind_MVC.Models;
+﻿using Microsoft.Ajax.Utilities;
+using NorthWind_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace NorthWind_MVC.Controllers
 {
@@ -63,7 +65,6 @@ namespace NorthWind_MVC.Controllers
                     command.Parameters.AddWithValue("@xUserName", home.xUserName);
                     command.Parameters.AddWithValue("@xPhone", home.xPhone);
                     command.ExecuteNonQuery();
-                    
                 }
             }
 
