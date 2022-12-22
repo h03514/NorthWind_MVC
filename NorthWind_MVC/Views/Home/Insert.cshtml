@@ -1,4 +1,4 @@
-﻿
+﻿@model NorthWind_MVC.Models.HomeViewModel 
 @{
     ViewBag.Title = "Insert";
 
@@ -8,12 +8,16 @@
 <h2>Insert</h2>
 
 <form>
-    @foreach (var x in Model)
+
+    @foreach (var x in Model.HomeH)
     {
-        <tr>
-            <td class="col-lg-3">@x.xUserName</td>
-            <td class="col-lg-3">@x.xUserPhone</td>
-        </tr>
+        <div>@x.xUserName</div>
+        <div>@x.xPhone</div>
     }
+
+    @*<div>
+        <div class="col-lg-3">@Model.xUserName </div>
+        <div class="col-lg-3">@Model.xPhone</div>
+    </div>*@
 </form>
 

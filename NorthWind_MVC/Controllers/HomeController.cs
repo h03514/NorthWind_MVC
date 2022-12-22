@@ -68,8 +68,35 @@ namespace NorthWind_MVC.Controllers
                 }
             }
 
+            str = "SELECT TOP 1000 * FROM [Northwind].[dbo].xAccount";
+            List<HomeViewModel>homeViewModels= new List<HomeViewModel>();
+            using (SqlConnection connection = new SqlConnection(conStr))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(str, connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                           home = new HomeViewModel
+                            {
+                                xUserName = reader.GetString(reader.GetOrdinal("xUserName")),
+                                xPhone = reader.GetString(reader.GetOrdinal("xPhone")),
+                            };
+                            homeViewModels.Add(home);
+                        }
+                        //ViewBag.DataCheck = homeViewModels;
+                    }
+                    else
+                    {
+                        return View("資料庫為空");
+                    }
+                }
+                connection.Close();
+            }
             return View(home);
-            
         }
         public ActionResult About()
         {

@@ -24,13 +24,15 @@ namespace NorthWind_MVC.Models
         /// <summary>
         /// Account
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "請輸入姓名")]
         public string xUserName { get; set; }
 
 
         [Display(Name = "行動電話")]
         [RegularExpression(@"^((0{1}[2-9]{1,3}-)|(0{1}[2-9]{1,3}))\d{7,8}$", ErrorMessage = "＊電話號碼格式錯誤")]
-        [Required]
+        [Required(ErrorMessage = "請輸入電話")]
         public string xPhone { get; set; }
+
+        public List<HomeViewModel> HomeH { get; set; }
     }
 }
