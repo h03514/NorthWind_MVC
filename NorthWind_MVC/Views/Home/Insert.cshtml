@@ -1,7 +1,7 @@
-﻿@model NorthWind_MVC.Models.HomeViewModel 
+﻿@model NorthWind_MVC.Models.HomeViewModel
 @{
     ViewBag.Title = "Insert";
-
+    List<NorthWind_MVC.Models.HomeViewModel> HomeModel = new List<NorthWind_MVC.Models.HomeViewModel>();
 
 }
 
@@ -9,15 +9,19 @@
 
 <form>
 
-    @foreach (var x in Model.HomeH)
-    {
-        <div>@x.xUserName</div>
-        <div>@x.xPhone</div>
-    }
 
+
+    @using (Html.BeginForm("GetUserAndPhone", "Home", FormMethod.Post))
+    {
+        foreach (var x in ViewBag.GetUserAndPhone)
+        {
+            <div>@x.xUserName</div>
+            <div>@x.xPhone</div>
+        }
+    }
     @*<div>
-        <div class="col-lg-3">@Model.xUserName </div>
-        <div class="col-lg-3">@Model.xPhone</div>
-    </div>*@
+            <div class="col-lg-3">@Model.xUserName </div>
+            <div class="col-lg-3">@Model.xPhone</div>
+        </div>*@
 </form>
 
