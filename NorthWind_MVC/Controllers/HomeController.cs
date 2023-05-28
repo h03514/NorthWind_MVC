@@ -19,32 +19,39 @@ namespace NorthWind_MVC.Controllers
             string str = "SELECT TOP 1000 * FROM [Northwind].[dbo].[Categories]";
             List<HomeViewModel> Food = new List<HomeViewModel>();
 
-            using (SqlConnection connection = new SqlConnection(conStr))
+            try
             {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(str, connection))
+                using (SqlConnection connection = new SqlConnection(conStr))
                 {
-                    SqlDataReader reader = command.ExecuteReader();
-                    if (reader.HasRows)
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(str, connection))
                     {
-                        while (reader.Read())
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
                         {
-                            HomeViewModel home = new HomeViewModel
+                            while (reader.Read())
                             {
-                                CategoryID = reader.GetInt32(reader.GetOrdinal("CategoryID")),
-                                CategoryName = reader.GetString(reader.GetOrdinal("CategoryName")),
-                                Description = reader.GetString(reader.GetOrdinal("Description")),
-                            };
-                            Food.Add(home);
+                                HomeViewModel home = new HomeViewModel
+                                {
+                                    CategoryID = reader.GetInt32(reader.GetOrdinal("CategoryID")),
+                                    CategoryName = reader.GetString(reader.GetOrdinal("CategoryName")),
+                                    Description = reader.GetString(reader.GetOrdinal("Description")),
+                                };
+                                Food.Add(home);
+                            }
+                            ViewBag.DataCheck = Food;
                         }
-                        ViewBag.DataCheck = Food;
+                        else
+                        {
+                            return View("資料庫為空");
+                        }
                     }
-                    else
-                    {
-                        return View("資料庫為空");
-                    }
+                    connection.Close();
                 }
-                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                return View("資料庫連線錯誤：" + ex.Message);
             }
             return View();
         }

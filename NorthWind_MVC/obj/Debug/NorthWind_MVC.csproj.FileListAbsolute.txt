@@ -84,3 +84,5 @@ D:\CSharp\Northwind\NorthWind_MVC\NorthWind_MVC\obj\Debug\NorthWind_MVC.csproj.C
 D:\CSharp\Northwind\NorthWind_MVC\NorthWind_MVC\obj\Debug\NorthWind_MVC.csproj.CopyComplete
 D:\CSharp\Northwind\NorthWind_MVC\NorthWind_MVC\obj\Debug\NorthWind_MVC.dll
 D:\CSharp\Northwind\NorthWind_MVC\NorthWind_MVC\obj\Debug\NorthWind_MVC.pdb
+D:\CSharp\Northwind\NorthWind_MVC\NorthWind_MVC\bin\NLog.dll
+D:\CSharp\Northwind\NorthWind_MVC\NorthWind_MVC\bin\NLog.xml
